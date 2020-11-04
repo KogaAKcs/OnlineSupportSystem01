@@ -1,6 +1,14 @@
 package OSSmainPackage;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class teacher implements Serializable {
 
@@ -9,11 +17,22 @@ public class teacher implements Serializable {
 	String mailaddress;
 	String name;
 
-	public teacher(int A,String B,String C,String D) {
+
+	DataSource ds;
+
+
+	public teacher() {
+
+	}
+
+	public teacher(int A,String B,String C,String D) throws NamingException {
 		this.teacherID = A;
 		this.password = B;
 		this.mailaddress = C;
 		this.name = D;
+
+		Context context = new InitialContext();
+		ds = (DataSource)context.lookup("java:comp/env/jdbc/Jsp10");
 	}
 
 	public int getTeacherID() {
@@ -46,6 +65,38 @@ public class teacher implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public void insertDB() {
+		Connection cn = null;
+		PreparedStatement ps = null;
+		try {
+			cn = ds.getConnection();
+			ps = cn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps.setInt(1, this.teacherID);
+		}catch(Exception e) {
+
+		}finally {
+			try {
+				ps.close();
+			}catch(Exception e) {
+
+			}
+			try {
+				cn.close();
+			}catch(Exception e) {
+
+			}
+		}
+	}
+
+	public static teacher getDB() {
+
+	}
+
+	public static ArrayList<teacher> getAllData(){
+
 	}
 
 }
