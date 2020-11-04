@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>成績確認画面</title>
+</head>
+<body>
+<h1>成績確認画面(クラス)</h1>
+<h2>
+	<table border="1", width="500", height="50">
+	<tr>
+		<th>問題ID</th>
+		<th>前回</th>
+		<th>前々回</th>
+		<th>前々前回</th>
+	</tr>
+	<tr>
+		<td>問題ID</td>
+		<td>〇</td>
+		<td>〇</td>
+		<td>×</td>
+	</tr>
+	<tr>
+		<td>問題ID</td>
+		<td>〇</td>
+		<td>△</td>
+		<td>×</td>
+	</tr>
+	<tr>
+		<td>問題ID</td>
+		<td>〇</td>
+		<td>△</td>
+		<td>×</td>
+	</tr>
+	</table>
+</h2>
+<h3>苦手な問題
+	<table border="1", width="300", height="100">
+	<tr>
+		<th>問題ID</th>
+		<th>分野</th>
+		<th>問題番号</th>
+	</tr>
+	<tr>
+		<td>問題ID</td>
+		<td>--</td>
+		<td>--</td>
+	</tr>
+	<tr>
+		<td>問題ID</td>
+		<td>--</td>
+		<td>--</td>
+	</tr>
+	<tr>
+		<td>問題ID</td>
+		<td>--</td>
+		<td>--</td>
+	</tr>
+	</table>
+</h3>
+</body>
+</html>
