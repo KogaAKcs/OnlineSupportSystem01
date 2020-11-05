@@ -19,6 +19,8 @@ public class teacher implements Serializable {
 
 
 	DataSource ds;
+	Connection cn;
+	PreparedStatement ps;
 
 
 	public teacher() {
@@ -33,6 +35,8 @@ public class teacher implements Serializable {
 
 		Context context = new InitialContext();
 		ds = (DataSource)context.lookup("java:comp/env/jdbc/Jsp10");
+		cn = null;
+		ps = null;
 	}
 
 	public int getTeacherID() {
@@ -69,8 +73,6 @@ public class teacher implements Serializable {
 
 
 	public void insertDB() {
-		Connection cn = null;
-		PreparedStatement ps = null;
 		try {
 			cn = ds.getConnection();
 			ps = cn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
@@ -91,12 +93,22 @@ public class teacher implements Serializable {
 		}
 	}
 
-	public static teacher getDB() {
-
+	public teacher getDB() {
+		try {
+			cn = ds.getConnection();
+			ps = cn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps.setInt(1, this.teacherID);
+			return null;
+		}catch(Exception e) {
+			
+		}finally {
+			
+		}
+		return null;
 	}
 
 	public static ArrayList<teacher> getAllData(){
-
+		return null;
 	}
 
 }
