@@ -3,6 +3,7 @@ package OSSmainPackage;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -18,9 +19,7 @@ public class teacher implements Serializable {
 	String name;
 
 
-	DataSource ds;
-	Connection cn;
-	PreparedStatement ps;
+	static DataSource ds;
 
 
 	public teacher() {
@@ -35,8 +34,6 @@ public class teacher implements Serializable {
 
 		Context context = new InitialContext();
 		ds = (DataSource)context.lookup("java:comp/env/jdbc/Jsp10");
-		cn = null;
-		ps = null;
 	}
 
 	public int getTeacherID() {
@@ -72,10 +69,13 @@ public class teacher implements Serializable {
 	}
 
 
+
 	public void insertDB() {
+		Connection dcn = null;
+		PreparedStatement ps = null;
 		try {
-			cn = ds.getConnection();
-			ps = cn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			dcn = ds.getConnection();
+			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
 			ps.setInt(1, this.teacherID);
 		}catch(Exception e) {
 
@@ -86,29 +86,89 @@ public class teacher implements Serializable {
 
 			}
 			try {
-				cn.close();
+				dcn.close();
 			}catch(Exception e) {
 
 			}
 		}
 	}
 
-	public teacher getDB() {
+	public static teacher getDB(int id) {
+		Connection dcn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
-			cn = ds.getConnection();
-			ps = cn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
-			ps.setInt(1, this.teacherID);
-			return null;
+			dcn = ds.getConnection();
+			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps.setInt(1, id);
 		}catch(Exception e) {
-			
+
 		}finally {
-			
+
 		}
 		return null;
 	}
 
-	public static ArrayList<teacher> getAllData(){
+	public static ArrayList<teacher> getSearchData(int start, int goal){
+		Connection dcn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			dcn = ds.getConnection();
+			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps.setInt(1, start);
+		}catch(Exception e) {
+
+		}finally {
+
+		}
 		return null;
+	}
+
+	public void editDB() {
+		Connection dcn = null;
+		PreparedStatement ps = null;
+		try {
+			dcn = ds.getConnection();
+			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps.setInt(1, this.teacherID);
+		}catch(Exception e) {
+
+		}finally {
+			try {
+				ps.close();
+			}catch(Exception e) {
+
+			}
+			try {
+				dcn.close();
+			}catch(Exception e) {
+
+			}
+		}
+	}
+
+	public static void deleteDB(int id) {
+		Connection dcn = null;
+		PreparedStatement ps = null;
+		try {
+			dcn = ds.getConnection();
+			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps.setInt(1, id);
+		}catch(Exception e) {
+
+		}finally {
+			try {
+				ps.close();
+			}catch(Exception e) {
+
+			}
+			try {
+				dcn.close();
+			}catch(Exception e) {
+
+			}
+		}
 	}
 
 }
