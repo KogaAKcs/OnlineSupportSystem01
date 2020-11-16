@@ -1,0 +1,66 @@
+@charset "UTF-8";
+.btn--orange{
+    /* 文字サイズを1.4emに指定 */
+    font-size: 1.4em;
+    /* 文字の太さをboldに指定 */
+    font-weight: bold;
+    /* 縦方向に10px、
+     * 横方向に30pxの余白を指定 */
+    padding: 10px 30px;
+     width:200px;
+ 	height:100px;
+}
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.btn--orange:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+.btn--green{
+    /* 文字サイズを1.4emに指定 */
+    font-size: 1.4em;
+    /* 文字の太さをboldに指定 */
+    font-weight: bold;
+    /* 縦方向に10px、
+     * 横方向に30pxの余白を指定 */
+    padding: 10px 30px;
+     width:200px;
+ 	height:100px;
+}
+.btn--green,
+a.btn--green {
+  color: #fff;
+  background-color: #008000;
+}
+.btn--green:hover,
+a.btn--green:hover {
+  color: #fff;
+  background: #008000;
+}
+.midashi{
+	 font-size: 2.5em;
+}
+.button5{
+	text-align:center
+}
+.button6{
+    /* 文字サイズを1.4emに指定 */
+    font-size: 1.4em;
+    /* 縦方向に10px、
+     * 横方向に30pxの余白を指定 */
+    padding: 5px 15px;
+     width:120px;
+ 	height:40px;
+}
+a.button6 {
+  color: #000000;
+  background-color: #ffffff;
+}
+.button6:hover,
+a.button6:hover {
+  color: #000000;
+  background: #ffffff;
+}
