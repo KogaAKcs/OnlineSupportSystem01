@@ -1,18 +1,14 @@
 package OSSmainPackage;
 
 public class dummyteacher extends teacher {
-	
+
 	public dummyteacher() {
 		super();
 	}
-	
+
 	@Override
 	public void insertDB() {
-		System.out.println("ƒf[ƒ^ƒx[ƒXƒCƒ“ƒT[ƒg:"
-				+ this.teacherID
-				+ this.password
-				+ this.mailaddress
-				+ this.name);
+		setName("æˆåŠŸï¼");
 	}
 
 }

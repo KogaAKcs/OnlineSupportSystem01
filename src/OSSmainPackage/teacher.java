@@ -75,8 +75,11 @@ public class teacher implements Serializable {
 		PreparedStatement ps = null;
 		try {
 			dcn = ds.getConnection();
-			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps = dcn.prepareStatement("INSERT INTO teacher(teacherID, password, mailaddress, name) VALUES(? ,? ,? ,?)");
 			ps.setInt(1, this.teacherID);
+			ps.setString(2, this.password);
+			ps.setString(3, this.mailaddress);
+			ps.setString(4, this.name);
 		}catch(Exception e) {
 
 		}finally {
@@ -93,13 +96,14 @@ public class teacher implements Serializable {
 		}
 	}
 
-	public static teacher getDB(int id) {
+
+	public static ArrayList<teacher> getData(int id){
 		Connection dcn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			dcn = ds.getConnection();
-			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps = dcn.prepareStatement("SELECT * FROM teacher WHERE id = ?");
 			ps.setInt(1, id);
 		}catch(Exception e) {
 
@@ -109,14 +113,15 @@ public class teacher implements Serializable {
 		return null;
 	}
 
-	public static ArrayList<teacher> getSearchData(int start, int goal){
+	public static ArrayList<teacher> getData(int start, int goal){
 		Connection dcn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			dcn = ds.getConnection();
-			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps = dcn.prepareStatement("SELECT * FROM teacher WHERE id BETWEEN ? AND ?");
 			ps.setInt(1, start);
+			ps.setInt(2, goal);
 		}catch(Exception e) {
 
 		}finally {
@@ -130,8 +135,11 @@ public class teacher implements Serializable {
 		PreparedStatement ps = null;
 		try {
 			dcn = ds.getConnection();
-			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
-			ps.setInt(1, this.teacherID);
+			ps = dcn.prepareStatement("UPDATE teacher SET schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps.setInt(1, teacherID);
+			ps.setString(2, password);
+			ps.setString(3, mailaddress);
+			ps.setString(4, name);
 		}catch(Exception e) {
 
 		}finally {
@@ -153,18 +161,16 @@ public class teacher implements Serializable {
 		PreparedStatement ps = null;
 		try {
 			dcn = ds.getConnection();
-			ps = dcn.prepareStatement("INSERT INTO schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
+			ps = dcn.prepareStatement("DELETE FROM teacher WHERE id=?");
 			ps.setInt(1, id);
 		}catch(Exception e) {
 
 		}finally {
 			try {
 				ps.close();
+				dcn.close();
 			}catch(Exception e) {
 
-			}
-			try {
-				dcn.close();
 			}catch(Exception e) {
 
 			}
