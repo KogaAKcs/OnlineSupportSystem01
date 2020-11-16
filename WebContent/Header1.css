@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.title{text-align:center}
+
+.menubar{text-align:center}
+
+
+
+
+.container{
+text-align:center
+}
+.room{
+     background: #fc2;
+  border-color: #fa0;
+}
+.schedule{
+    grid-column: 1/2;
+    grid-row: 6/9;
+      background: #0bd;
+  border-color: #09c;
+}
+.main{
+      background: #c6c;
+  border-color: #a4a;
+}
+.notice{
+  background: #0ba;
+  border-color: #098;
+}
+.friendnotice{
+  background: #ffff00;
+  border-color: #8080ff;
+}
