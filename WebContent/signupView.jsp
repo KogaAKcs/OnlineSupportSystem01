@@ -39,7 +39,7 @@
       <div class="row">
         <div class="input-field col s6">
           <input id="name" type="text" class="validate">
-          <label for="name">指名</label>
+          <label for="name">名前</label>
         </div>
       </div>
 
