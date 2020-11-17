@@ -2,12 +2,11 @@ package OSSmainPackage;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
@@ -21,19 +20,36 @@ public class teacher implements Serializable {
 
 	static DataSource ds;
 
+	Connection con;
+	String dbDirectory;
+	String dbname;
+	String pass;
+	String sql;
+	PreparedStatement stmt;
+	ResultSet rs;
+
+
 
 	public teacher() {
 
 	}
 
-	public teacher(int A,String B,String C,String D) throws NamingException {
+	public teacher(int A,String B,String C,String D) throws NamingException, ClassNotFoundException {
 		this.teacherID = A;
 		this.password = B;
 		this.mailaddress = C;
 		this.name = D;
 
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		dbDirectory = "jdbc:mysql://localhost:3306/test_db?serverTimezone=JST";
+		dbname = "root";
+		pass = "kcsf";
+
+		/*
 		Context context = new InitialContext();
-		ds = (DataSource)context.lookup("java:comp/env/jdbc/Jsp10");
+		ds = (DataSource)context.lookup("jdbc:mysql://localhost:3306/test_db?serverTimezone=JST", "root", "kcsf");
+		*/
+
 	}
 
 	public int getTeacherID() {
@@ -70,7 +86,27 @@ public class teacher implements Serializable {
 
 
 
-	public void insertDB() {
+	public void insertDB(){
+		try {
+			con = DriverManager.getConnection(dbDirectory, dbname, pass);
+			sql = "INSERT INTO teacher(teacherID, password, mailaddress, name) VALUES(? ,? ,? ,?)";
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, this.teacherID);
+			stmt.setString(2, this.password);
+			stmt.setString(3, this.mailaddress);
+			stmt.setString(4, this.name);
+		}catch(Exception e) {
+
+		}finally {
+			try {
+				stmt.close();
+				con.close();
+			}catch(Exception e) {
+
+			}
+		}
+
+		/*
 		Connection dcn = null;
 		PreparedStatement ps = null;
 		try {
@@ -94,6 +130,7 @@ public class teacher implements Serializable {
 
 			}
 		}
+		*/
 	}
 
 
@@ -128,6 +165,7 @@ public class teacher implements Serializable {
 
 		}
 		return null;
+
 	}
 
 	public void editDB() {
@@ -169,7 +207,7 @@ public class teacher implements Serializable {
 			try {
 				ps.close();
 				dcn.close();
-			}catch(Exception e) {
+			}catch(RuntimeException e) {
 
 			}catch(Exception e) {
 

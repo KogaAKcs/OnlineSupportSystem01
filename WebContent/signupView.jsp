@@ -17,11 +17,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/js/materialize.min.js'></script>
 
-
-<form method="POST" action="C:\pleiades\workspace\OnlineSupportSystem01\src\OSSmainPackage\LoginControl.java">
 <!--タイトル-->
 <title>オンライン学習支援システム</title>
-<div class='title'>
+</head>
+
+<body>
+<form method="POST" action="C:/pleiades/workspace/OnlineSupportSystem01/WebContent/testResult.jsp">
+<div class="title">
   <h1><img src="logo.png" alt=""></h1>
   <h2>アカウント新規登録</h2>
 </div>
@@ -29,7 +31,7 @@
 <div class="container">
  <div class="signup">
   <div class="row">
-    <form class="col s12">
+
      <div class="row">
         <div class="input-field col s12">
           <input id="TeacherID" type="text" class="validate">
@@ -56,13 +58,13 @@
         </div>
       </div>
 
-    </form>
+	<input type="submit" value="新規登録" class=button6 />
+
 
   </div>
-  <input type="submit" class='button6' value="新規登録">
   </div>
 </div>
 
-</head>
+</form>
 </body>
 </html>
