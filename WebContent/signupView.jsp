@@ -35,7 +35,7 @@
      <div class="row">
         <div class="input-field col s12">
           <input id="TeacherID" type="text" class="validate">
-          <label for="先生ID">先生ID</label>
+          <label for="先生ID">先生のID</label>
         </div>
       </div>
       <div class="row">
