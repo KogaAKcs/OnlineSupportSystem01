@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<form method="POST" action="C:/pleiades/workspace/OnlineSupportSystem01/WebContent/testResult.jsp">
+<form method="POST" action="./LoginControl">
 <div class="title">
   <h1><img src="logo.png" alt=""></h1>
   <h2>アカウント新規登録</h2>

@@ -41,7 +41,7 @@ public class teacher implements Serializable {
 		this.name = D;
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		dbDirectory = "jdbc:mysql://localhost:3306/test_db?serverTimezone=JST";
+		dbDirectory = "jdbc:mysql://localhost:3306/osstest01?serverTimezone=JST";
 		dbname = "root";
 		pass = "kcsf";
 
@@ -96,13 +96,13 @@ public class teacher implements Serializable {
 			stmt.setString(3, this.mailaddress);
 			stmt.setString(4, this.name);
 		}catch(Exception e) {
-
+			System.out.println("エラin：" + e);
 		}finally {
 			try {
 				stmt.close();
 				con.close();
 			}catch(Exception e) {
-
+				System.out.println("エラcl：" + e);
 			}
 		}
 

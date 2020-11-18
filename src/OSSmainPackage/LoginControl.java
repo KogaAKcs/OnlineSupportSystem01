@@ -26,27 +26,29 @@ public class LoginControl extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("<html><head></head><body>エラー</body></html>");
+		System.out.println("ようころ！");
 
 		try{
 
 			teacher info = new teacher();
-			info.setTeacherID(Integer.parseInt(request.getParameter("teacherID")));
+			info.setTeacherID(Integer.parseInt(request.getParameter("TeacherID")));
+			System.out.println(info.teacherID);
 			info.setName(request.getParameter("name"));
+			System.out.println(info.getName());
 			info.setMailaddress(request.getParameter("mailaddress"));
+			System.out.println(info.getMailaddress());
 			info.setPassword(request.getParameter("password"));
+			System.out.println(info.getPassword());
 			info.insertDB();
 			request.setAttribute("testData", info);
 			getServletContext().getRequestDispatcher("/testResult.jsp").forward(request, response);
-			//log(info.teacherID + info.name + info.mailaddress + info.password);
-			//System.out.println("<html><head></head><body>aaa</body></html>");
 
 		}catch(ServletException e) {
-			System.out.println("<html><head></head><body>エラー</body></html>");
+			System.out.println("ServletException");
 		}catch(IOException e) {
-			System.out.println("<html><head></head><body>エラー</body></html>");
+			System.out.println("IOException");
 		}catch(Exception e) {
-			System.out.println("<html><head></head><body>エラー</body></html>");
+			System.out.println("Exception");
 		}finally{
 
 		}
