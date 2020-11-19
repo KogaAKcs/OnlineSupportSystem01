@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class teacher implements Serializable {
@@ -21,8 +20,8 @@ public class teacher implements Serializable {
 	static DataSource ds;
 
 	Connection con;
-	String dbDirectory;
-	String dbname;
+	String dburl;
+	String usr;
 	String pass;
 	String sql;
 	PreparedStatement stmt;
@@ -32,23 +31,45 @@ public class teacher implements Serializable {
 
 	public teacher() {
 
+		try {
+			System.out.println("コンストラクタ");
+			//NamingException
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			dburl = "jdbc:mysql://localhost:3366/osstest01";
+			//osstest01?characterEncoding=UTF-8?serverTimezone=JST
+			usr = "root";
+			pass = "kcsf";
+
+		}catch(ClassNotFoundException e ) {
+			System.out.println("エラclassnot：" + e);
+		}catch(Exception e) {
+			System.out.println("エラconstructor：" + e);
+		}
+
+
+
 	}
 
-	public teacher(int A,String B,String C,String D) throws NamingException, ClassNotFoundException {
+	public teacher(int A,String B,String C,String D) {
 		this.teacherID = A;
 		this.password = B;
 		this.mailaddress = C;
 		this.name = D;
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		dbDirectory = "jdbc:mysql://localhost:3306/osstest01?serverTimezone=JST";
-		dbname = "root";
-		pass = "kcsf";
+		try {
+			System.out.println("コンストラクタ");
+			//NamingException
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			dburl = "jdbc:mysql://localhost:3366/osstest01";
+			//osstest01?characterEncoding=UTF-8?serverTimezone=JST
+			usr = "root";
+			pass = "kcsf";
 
-		/*
-		Context context = new InitialContext();
-		ds = (DataSource)context.lookup("jdbc:mysql://localhost:3306/test_db?serverTimezone=JST", "root", "kcsf");
-		*/
+		}catch(ClassNotFoundException e ) {
+			System.out.println("エラclassnot：" + e);
+		}catch(Exception e) {
+			System.out.println("エラconstructor：" + e);
+		}
 
 	}
 
@@ -88,49 +109,24 @@ public class teacher implements Serializable {
 
 	public void insertDB(){
 		try {
-			con = DriverManager.getConnection(dbDirectory, dbname, pass);
+			con = DriverManager.getConnection(dburl, usr, pass);
 			sql = "INSERT INTO teacher(teacherID, password, mailaddress, name) VALUES(? ,? ,? ,?)";
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, this.teacherID);
 			stmt.setString(2, this.password);
 			stmt.setString(3, this.mailaddress);
 			stmt.setString(4, this.name);
+			stmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("エラin：" + e);
+			System.out.println("エラinsert：" + e);
 		}finally {
 			try {
 				stmt.close();
 				con.close();
 			}catch(Exception e) {
-				System.out.println("エラcl：" + e);
+				System.out.println("エラclose：" + e);
 			}
 		}
-
-		/*
-		Connection dcn = null;
-		PreparedStatement ps = null;
-		try {
-			dcn = ds.getConnection();
-			ps = dcn.prepareStatement("INSERT INTO teacher(teacherID, password, mailaddress, name) VALUES(? ,? ,? ,?)");
-			ps.setInt(1, this.teacherID);
-			ps.setString(2, this.password);
-			ps.setString(3, this.mailaddress);
-			ps.setString(4, this.name);
-		}catch(Exception e) {
-
-		}finally {
-			try {
-				ps.close();
-			}catch(Exception e) {
-
-			}
-			try {
-				dcn.close();
-			}catch(Exception e) {
-
-			}
-		}
-		*/
 	}
 
 
@@ -168,28 +164,26 @@ public class teacher implements Serializable {
 
 	}
 
-	public void editDB() {
-		Connection dcn = null;
-		PreparedStatement ps = null;
+	public void editDB(int id) {
 		try {
-			dcn = ds.getConnection();
-			ps = dcn.prepareStatement("UPDATE teacher SET schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)");
-			ps.setInt(1, teacherID);
-			ps.setString(2, password);
-			ps.setString(3, mailaddress);
-			ps.setString(4, name);
+			con = DriverManager.getConnection(dburl, usr, pass);
+			sql = "UPDATE teacher SET schedules(title, schedule_date, schedule_time, memo) VALUES(? ,? ,? ,?)"
+					+ "WHERE id = ?";
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, this.teacherID);
+			stmt.setString(2, this.password);
+			stmt.setString(3, this.mailaddress);
+			stmt.setString(4, this.name);
+			stmt.setInt(5, id);
+			stmt.executeUpdate();
 		}catch(Exception e) {
-
+			System.out.println("エラinsert：" + e);
 		}finally {
 			try {
-				ps.close();
+				stmt.close();
+				con.close();
 			}catch(Exception e) {
-
-			}
-			try {
-				dcn.close();
-			}catch(Exception e) {
-
+				System.out.println("エラclose：" + e);
 			}
 		}
 	}
