@@ -1,8 +1,5 @@
 package OSSmainPackage;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +28,9 @@ public class LoginControl extends HttpServlet {
 		try{
 
 			teacher info = new teacher();
+			info.deleteDB(Integer.parseInt( request.getParameter("TeacherID") ) );
+
+			/*
 			info.setTeacherID(Integer.parseInt(request.getParameter("TeacherID")));
 			System.out.println(info.teacherID);
 			info.setName(request.getParameter("name"));
@@ -39,19 +39,23 @@ public class LoginControl extends HttpServlet {
 			System.out.println(info.getMailaddress());
 			info.setPassword(request.getParameter("password"));
 			System.out.println(info.getPassword());
-			info.insertDB();
+			info.editDB(info.teacherID);
 			request.setAttribute("testData", info);
 			getServletContext().getRequestDispatcher("/testResult.jsp").forward(request, response);
-
-		}catch(ServletException e) {
+			}catch(ServletException e) {
 			System.out.println("ServletException");
 		}catch(IOException e) {
 			System.out.println("IOException");
+			*/
+
+
+
 		}catch(Exception e) {
 			System.out.println("Exception");
 		}finally{
 
 		}
 	}
+
 
 }
