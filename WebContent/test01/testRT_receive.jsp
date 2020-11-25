@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>テスト：リアルタイム通信(受信)</title>
 </head>
 <body>
+
+表示
 
 </body>
 </html>

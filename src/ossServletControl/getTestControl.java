@@ -1,4 +1,4 @@
-package OSSmainPackage;
+package ossServletControl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import OSSmainPackage.teacher;
 
 /**
  * Servlet implementation class getTestControl
@@ -20,8 +22,8 @@ public class getTestControl extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		teacher th = new teacher();
-		ArrayList<teacher> list = th.getData( Integer.parseInt( request.getParameter("TeacherID") ) , 
+		//teacher th = new teacher();
+		ArrayList<teacher> list = teacher.getData( Integer.parseInt( request.getParameter("TeacherID") ) ,
 				Integer.parseInt( request.getParameter("name") ));
 		System.out.println(list.size());
 		request.setAttribute("listData", list);
