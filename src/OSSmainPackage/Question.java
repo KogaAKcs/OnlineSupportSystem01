@@ -15,7 +15,18 @@ public class Question implements Serializable {
 	String Question;
 	String Picture;
 
-	int classificationID;
+	int classificationN;
+
+	public Question() {
+		this(0,0,"","");
+	}
+
+	public Question(int QuestionID, int CategoryID, String Question, String Picture) {
+		this.QuestionID = QuestionID;
+		this.CategoryID = CategoryID;
+		this.Question = Question;
+		this.Picture = Picture;
+	}
 
 	static String classname  = "Question";
 
@@ -23,7 +34,7 @@ public class Question implements Serializable {
 	public int getQuestionID() {
 		return QuestionID;
 	}
-	public void setID(int iD) {
+	public void setQuestionID(int iD) {
 		QuestionID = iD;
 	}
 	public int getCategoryID() {
@@ -43,6 +54,12 @@ public class Question implements Serializable {
 	}
 	public void setPicture(String picture) {
 		Picture = picture;
+	}
+	public int getClassificationN() {
+		return classificationN;
+	}
+	public void setClassificationN(int classificationN) {
+		this.classificationN = classificationN;
 	}
 
 }
