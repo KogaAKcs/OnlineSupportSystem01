@@ -27,7 +27,7 @@ public class getTestControl extends HttpServlet {
 				Integer.parseInt( request.getParameter("name") ));
 		System.out.println(list.size());
 		request.setAttribute("listData", list);
-		getServletContext().getRequestDispatcher("/testResult.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/test01/testResult.jsp").forward(request, response);
 	}
 
 }

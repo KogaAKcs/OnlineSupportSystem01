@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- ../src/OSSmainPackage/LoginControl.java -->
-<form method="POST" action="./getTestControl">
+<form method="POST" action="../getTestControl">
 
 <label >先生ID<br />
 <input name="TeacherID" type="text" /><br />
