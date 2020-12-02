@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.title{text-align:center}
+
+.menubar{text-align:center}
+
+
+
+
+.container{
+text-align:center
+}
+
+.Question{
+	margin: 150px
+}
+
+.Choice1{
+	display: inline-block;
+}
+
+.Choice2{
+	display: inline-block;
+}
+
+.Choice3{
+	display: inline-block;
+}
+
+.Choice4{
+	display: inline-block;
+}

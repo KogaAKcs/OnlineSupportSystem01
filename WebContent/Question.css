@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.title{text-align:center}
+
+.menubar{text-align:center}
+
+
+.Categorylist{
+	display:inline-block;
+	  background: #fc2;
+  border-color: #fa0;
+  max-height: 400px;
+  height: 400px;
+  overflow-y:scroll;
+  padding: 10px
+}
+
+.Questionlist{
+	display:inline-block;
+	  background: #0bd;
+  border-color: #09c;
+  max-height: 400px;
+  height: 400px;
+  overflow-y:scroll;
+
+}
+
+ul {
+  padding: 0;
+  position: relative;
+}
+ul li {
+  line-height: 1.5;
+  padding: 0.5em 0.5em 0.5em 1.7em;
+  list-style-type: none!important;
+  background: -webkit-linear-gradient(top, gray 0%, #cfcfcf 100%);/*グラデーション*/
+  background: linear-gradient(to bottom, gray 0%, #cfcfcf 100%);/*グラデーション*/
+  color: #000000;
+}
+

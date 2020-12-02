@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.title{text-align:center}
+
+.menubar{text-align:center}
+
+
+
+
+.container{
+	text-align:center
+}
+
+.room{
+  background: #fc2;
+  border-color: #fa0;
+  height: 250px;
+}
+.schedule{
+  background: #0bd;
+  border-color: #09c;
+  height: 250px;
+}
+.main{
+  background: #c6c;
+  border-color: #a4a;
+  height: 500px;
+}
+.notice{
+  background: #0ba;
+  border-color: #098;
+  height: 250px;
+}
+.chat{
+	background: #c6c;
+  border-color: #a4a;
+  height: 250px;
+}
+
