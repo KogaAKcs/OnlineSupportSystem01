@@ -49,10 +49,15 @@
   border-color: #8080ff;
 }
 .signup{
-	 grid-column: 1/5;
-    grid-row: 1/5;
+	 grid-column: 3/8;
+    grid-row: 2/6;
 }
 .button6{
 	 grid-column: 7/8;
     grid-row: 4/5;
 }
+
+form {
+  text-align: center;
+}
+
