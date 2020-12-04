@@ -1,6 +1,7 @@
 package OSSmainPackage;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * 問題＿親データ
@@ -8,12 +9,21 @@ import java.io.Serializable;
  * @author s3
  *
  */
-public class Question implements Serializable {
+abstract public class Question implements Serializable {
 
 	int QuestionID;
 	int CategoryID;
 	String Question;
 	String Picture;
+
+	/**
+	 * 正解
+	 */
+	String Correctanswer;
+	/**
+	 * 解説
+	 */
+	String Commentary;
 
 	int classificationN;
 
@@ -61,5 +71,24 @@ public class Question implements Serializable {
 	public void setClassificationN(int classificationN) {
 		this.classificationN = classificationN;
 	}
+	public String getCorrectanswer() {
+		return Correctanswer;
+	}
+	public void setCorrectanswer(String correctanswer) {
+		Correctanswer = correctanswer;
+	}
+	public String getCommentary() {
+		return Commentary;
+	}
+	public void setCommentary(String commentary) {
+		Commentary = commentary;
+	}
+
+	abstract public void insertDB();
+	abstract public ArrayList<Question> getDB();
+	abstract public void editDB();
+	abstract public void deleteDB();
+
+
 
 }

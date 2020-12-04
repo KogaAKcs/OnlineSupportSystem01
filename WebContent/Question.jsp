@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
     <jsp:useBean id="testData" class="ossServletControl.HomeControl" scope="request" />
 <jsp:useBean id="listData" type="java.util.ArrayList<OSSmainPackage.Category>" scope="request" />
-    
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -8,31 +8,25 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
- * 問題＿四択式データ
+ * 問題＿数字データ
  *
  * @author s3
  *
  */
-public class Question_choice extends Question implements Serializable{
+public class Question_text extends Question implements Serializable{
 
-	String Answer1;
-	String Answer2;
-	String Answer3;
-	String Answer4;
+	String text;
 
-	public Question_choice() {
+	public Question_text() {
 
 	}
 
-	public Question_choice(int QuestionID,
+	public Question_text(int QuestionID,
 							int CategoryID,
 							String Question,
 							String Picture,
 							int classificationN,
-							String Answer1,
-							String Answer2,
-							String Answer3,
-							String Answer4,
+							String text,
 							String Correctanswer,
 							String Commentary) {
 
@@ -41,10 +35,7 @@ public class Question_choice extends Question implements Serializable{
 		this.Question = Question;
 		this.Picture = Picture;
 		this.classificationN =  classificationN;
-		this.Answer1 = Answer1;
-		this.Answer2 = Answer2;
-		this.Answer3 = Answer3;
-		this.Answer4 = Answer4;
+		this.text = text;
 		this.Correctanswer = Correctanswer;
 		this.Commentary =  Commentary;
 
@@ -62,29 +53,11 @@ public class Question_choice extends Question implements Serializable{
 	}
 
 
-	public String getAnswer1() {
-		return Answer1;
+	public String getText() {
+		return text;
 	}
-	public void setAnswer1(String answer1) {
-		Answer1 = answer1;
-	}
-	public String getAnswer2() {
-		return Answer2;
-	}
-	public void setAnswer2(String answer2) {
-		Answer2 = answer2;
-	}
-	public String getAnswer3() {
-		return Answer3;
-	}
-	public void setAnswer3(String answer3) {
-		Answer3 = answer3;
-	}
-	public String getAnswer4() {
-		return Answer4;
-	}
-	public void setAnswer4(String answer4) {
-		Answer4 = answer4;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 
@@ -111,16 +84,12 @@ public class Question_choice extends Question implements Serializable{
 
 
 			sql = "INSERT INTO Question(QuestionID, "
-					+ "Answer1, Answer2, Answer3, Answer4, "
-					+ "Correctanswer, Commentary) VALUES(?, ?, ?, ?, ?, ?, ?)";
+					+ " text, Correctanswer, Commentary) VALUES(?, ?, ?, ?, ?, ?, ?)";
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, this.QuestionID);
-			stmt.setString(2, this.Answer1);
-			stmt.setString(3, this.Answer2);
-			stmt.setString(4, this.Answer3);
-			stmt.setString(5, this.Answer4);
-			stmt.setString(6, this.Correctanswer);
-			stmt.setString(7, this.Commentary);
+			stmt.setString(2, this.text);
+			stmt.setString(3, this.Correctanswer);
+			stmt.setString(4, this.Commentary);
 			stmt.executeUpdate();
 
 		}catch(Exception e) {
@@ -164,16 +133,13 @@ public class Question_choice extends Question implements Serializable{
 			rs_C = stmt.executeQuery();
 
 			rs_P.next();
-			Question_choice qu = new Question_choice();
+			Question_text qu = new Question_text();
 			qu.setQuestionID(rs_P.getInt("QuestionID"));
 			qu.setCategoryID(rs_P.getInt("CategoryID"));
 			qu.setQuestion(rs_P.getString("Question"));
 			qu.setPicture(rs_P.getString("Picture"));
 			qu.setClassificationN(rs_P.getInt("ClassificationN"));
-			qu.setAnswer1(rs_C.getString("Answer1"));
-			qu.setAnswer2(rs_C.getString("Answer2"));
-			qu.setAnswer3(rs_C.getString("Answer3"));
-			qu.setAnswer4(rs_C.getString("Answer4"));
+			qu.setText(rs_C.getString("text"));
 			qu.setCorrectanswer(rs_C.getString("Correctanswer"));
 			qu.setCommentary(rs_C.getString("Commentary"));
 
@@ -227,16 +193,13 @@ public class Question_choice extends Question implements Serializable{
 
 			while(rs_P.next()) {
 
-				Question_choice qu = new Question_choice();
+				Question_text qu = new Question_text();
 				qu.setQuestionID(rs_P.getInt("QuestionID"));
 				qu.setCategoryID(rs_P.getInt("CategoryID"));
 				qu.setQuestion(rs_P.getString("Question"));
 				qu.setPicture(rs_P.getString("Picture"));
 				qu.setClassificationN(rs_P.getInt("ClassificationN"));
-				qu.setAnswer1(rs_C.getString("Answer1"));
-				qu.setAnswer2(rs_C.getString("Answer2"));
-				qu.setAnswer3(rs_C.getString("Answer3"));
-				qu.setAnswer4(rs_C.getString("Answer4"));
+				qu.setText(rs_C.getString("text"));
 				qu.setCorrectanswer(rs_C.getString("Correctanswer"));
 				qu.setCommentary(rs_C.getString("Commentary"));
 
@@ -286,13 +249,9 @@ public class Question_choice extends Question implements Serializable{
 					+ " WHERE QuestionID = ?";
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, this.QuestionID);
-			stmt.setString(2, this.Answer1);
-			stmt.setString(3, this.Answer2);
-			stmt.setString(4, this.Answer3);
-			stmt.setString(5, this.Answer4);
-			stmt.setString(6, this.Correctanswer);
-			stmt.setString(7, this.Commentary);
-			stmt.setInt(8, this.QuestionID);
+			stmt.setString(2, this.text);
+			stmt.setString(3, this.Correctanswer);
+			stmt.setString(4, this.Commentary);
 			stmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println(classname + "エラinsert：" + e);
@@ -330,70 +289,6 @@ public class Question_choice extends Question implements Serializable{
 				System.out.println(classname + "エラclose：" + e);
 			}
 		}
-	}
-
-	/**
-	 * 外部キー(カテゴリ)DBからデータ取得
-	 * @param id 取得する外部キー(カテゴリ)のID
-	 * @return ArrayList<Question>
-	 */
-	public static ArrayList<Question> getData(Category ca) {
-
-		Connection con = null;
-		PreparedStatement stmt = null;
-		ResultSet rs_P = null;
-		ResultSet rs_C = null;
-
-		ArrayList<Question> listTH = new ArrayList<Question>();
-
-		try {
-			con = DriverManager.getConnection(NAME.DB_NAME, NAME.DB_USER_NAME, NAME.DB_PASS);
-			String sql = "SELECT * FROM Question WHERE CategoryID =  ? ;";
-			stmt = con.prepareStatement(sql);
-			stmt.setInt(1, ca.getCategoryID());
-			System.out.println("SQL文は" + stmt.toString());
-			rs_P = stmt.executeQuery();
-
-			sql = "SELECT * FROM Question_choice WHERE CategoryID =  ? ;";
-			stmt = con.prepareStatement(sql);
-			stmt.setInt(1, ca.getCategoryID());
-			System.out.println("SQL文は" + stmt.toString());
-			rs_C = stmt.executeQuery();
-
-			while(rs_P.next()) {
-
-				Question_choice qu = new Question_choice();
-				qu.setQuestionID(rs_P.getInt("QuestionID"));
-				qu.setCategoryID(rs_P.getInt("CategoryID"));
-				qu.setQuestion(rs_P.getString("Question"));
-				qu.setPicture(rs_P.getString("Picture"));
-				qu.setClassificationN(rs_P.getInt("ClassificationN"));
-				qu.setAnswer1(rs_C.getString("Answer1"));
-				qu.setAnswer2(rs_C.getString("Answer2"));
-				qu.setAnswer3(rs_C.getString("Answer3"));
-				qu.setAnswer4(rs_C.getString("Answer4"));
-				qu.setCorrectanswer(rs_C.getString("Correctanswer"));
-				qu.setCommentary(rs_C.getString("Commentary"));
-
-
-				listTH.add(qu);
-			}
-
-		}catch(Exception e) {
-			System.out.println(classname +  "エラgetData：" + e);
-		}finally {
-			try {
-				rs_P.close();
-				rs_C.close();
-				stmt.close();
-				con.close();
-			}catch(Exception e) {
-				System.out.println(classname + "エラclose：" + e);
-			}
-		}
-		return listTH;
-
-
 	}
 
 

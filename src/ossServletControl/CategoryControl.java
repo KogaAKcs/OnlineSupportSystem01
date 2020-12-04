@@ -48,6 +48,10 @@ public class  CategoryControl extends HttpServlet{
 
 						ArrayList<Category> clist = dummyCategory.getData(1);
 						System.out.println( clist.size() );
+						/*
+						 * Question question = new Question();
+						 * ArrayList<Question> list =  question.getFdb_C( Integer.parseInt( request.getParameter("")) );
+						 */
 						request.setAttribute("listData", clist);
 						getServletContext().getRequestDispatcher("/Question.jsp").forward(request, response);
 			}

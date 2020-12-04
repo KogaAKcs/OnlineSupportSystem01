@@ -1,6 +1,7 @@
 package OSSmainPackage;
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,8 +18,11 @@ public class Result implements Serializable {
 	int StudentID;
 	int QuestionID;
 	String LastTime;
+	Date lastdata;
 	String TwoTimesBefore;
+	Date TwoTimesBeforedata;
 	String ThreeTimesBefore;
+	Date ThreeTimesBeforedata;
 
 	static String classname  = "Result";
 

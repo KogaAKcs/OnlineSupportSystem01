@@ -4,24 +4,24 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import OSSmainPackage.Question;
+import OSSmainPackage.Question_choice;
 
-public class dummyQuestion extends Question implements Serializable{
+public class dummyQuestion_choice extends Question_choice implements Serializable{
 
 	static ArrayList<Question> list;
 
-	public dummyQuestion() {
+	public dummyQuestion_choice() {
 		super();
 
 		list  = new ArrayList<Question>();
 		for(int i=0; i<=5; i++) {
-			Question th = new Question( i, 000, "Question" + i, "Picture" + i , "Answer1" + i , "Answer2" + i , "Answer3" + i , "Answer4" +
-					i , "Correctanswer" );
+			Question_choice th = new Question_choice();
 			list.add(th);
 		}
 	}
 
 	public void insertDB() {
-		System.out.println("挿入成功！" + CategoryID + Question + Answer1 + Answer2 + Answer3 + Answer4 + Correctanswer);
+		System.out.println("挿入成功！" + list.get(1).getQuestionID());
 
 	}
 
